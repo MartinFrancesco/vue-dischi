@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>vue-dischi</title>
+    <!-- VUE JS -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <!-- Google font -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Style -->
+    <link rel="stylesheet" href="./css/style.css">
+  </head>
+  <body>
+    <div id="app">
+        <header>
+            <div class="logo-wrapper">
+                <img src="./img/logo.png" alt="list-logo">
+            </div>
+        </header>
+        <main>
+            <div class="cd-wrapper">
+                <!-- Select by genre -->
+                <div class="filter-wrapper">
+                    <p class="filter">Filter by genre:</p>
+                    <select v-model="selectedGenre"
+                    @change="filterGenre">
+                        <option value="all">All</option>
+                        <option value="pop">Pop</option>
+                        <option value="rock">Rock</option>
+                        <option value="metal">Metal</option>
+                        <option value="jazz">Jazz</option>
+
+                    </select>
+                </div>
+
+                <!-- List cd -->
+                <ul v-if="cds.length > 0" class="cd-list">
+                    <li v-for="cd in cds"class="cd">
+                        <div class="image-wrapper">
+                           <img :src="cd.poster" :alt="cd.title">
+                        </div>
+                        <h3 class="title">{{cd.title}}</h3>
+                        <div class="author">{{cd.author}}</div>
+                        <div class="year">{{cd.year}}</div>
+                        <div class="genre">{{cd.genre}}</div>
+                    </li>
+                </ul>
+                <h2 v-else class="loader">
+                Loading list, please wait...
+                </h2>
+            </div>
+
+        </main>
+
+    </div>
+    <!-- Axios -->
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.0/axios.min.js'></script>
+    <!-- JS -->
+    <script src="./js/main.js"></script>
+</body>
+</html>
